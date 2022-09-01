@@ -21,6 +21,7 @@ version = 0.1
 
 def victron_thread(thread_count, config, vdevice_config, thread_q):
     from lib.victron import Victron
+    logging.getLogger().debug(f"Starting victron listener")
     v = Victron(config, vdevice_config, output, args, thread_count, thread_q)
     v.connect_disconnect_loop()
 

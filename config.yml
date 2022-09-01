@@ -14,10 +14,10 @@
 #      port: /dev/ttyUSB0
 
 devices:
-    - name: Shunt1
-      type: smartshunt
-      protocol: bluetooth-ble
-      mac: fd:d4:50:0f:6c:1b
+    - name: Phoenix1
+      type: phoenix
+      protocol: serial
+      port: /dev/pts/8
 
 # timer (in seconds) IN DEVELOPMENT!
 timer:
@@ -36,6 +36,7 @@ timer:
 ##    - mqtt
 ##    - print
 ##    - json
+#logger: mqtt
 logger: mqtt
 
 ## If logging is set to mqtt, this section must be filled
@@ -49,12 +50,10 @@ logger: mqtt
 ##   username: MQTT_USER
 ##   password: PASSWORD
 mqtt:
-    host: 192.168.3.2
+    host: 10.0.0.4
     port: 1883
     base_topic: victron
-    hass: True
-    username: USERNAME
-    password: PASSWORD
+    hass: False
 
 # Collected enitites by device type:
 # If you change this, the names must be the same like in the value tables from victron.py
@@ -151,3 +150,17 @@ mqtt:
 #      - Power
 #      - Used Energy
 collections:
+  phoenix:
+    device:
+      - Product ID
+      - Serial
+      - Firmware
+      - Production Date
+    latest:
+      - Voltage
+      - AC Voltage
+      - AC Current
+      - Mode
+      - Status
+      - Warning
+      - Alarm Reason

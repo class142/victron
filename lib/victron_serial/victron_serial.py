@@ -12,7 +12,9 @@ class VictronSerial:
 
         if self.device_config['type'] == 'phoenix':
             from lib.victron_serial.victron_phoenix import Phoenix
+            logger.debug(f"Starting VictronPhoenix")
             self.victron_device = Phoenix(self.device_config['name'], self.device_config['port'])
+            logger.debug(f"Started VictronPhoenix")
         elif self.device_config['type'] == 'smartshunt':
             from lib.victron_serial.victron_smartshunt import Smartshunt
             self.victron_device = Smartshunt(self.device_config['name'], self.device_config['port'])
@@ -36,6 +38,7 @@ class VictronSerial:
             self.victron_device.get_data(self.output)
 
             if args.direct_disconnect:
+                logger.debug(f"Disconnected")
                 self.finished_target()
                 return
             else:

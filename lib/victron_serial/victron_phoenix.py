@@ -29,7 +29,7 @@ class Phoenix:
     def __init__(self, name, port):
         self.name = name
         self.port = port
-        self.ve = Vedirect(self.port, 60)
+        self.ve = Vedirect(self.port, 10)
 
     def get_mapping_table(self):
         return self.MAP

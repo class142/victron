@@ -8,6 +8,7 @@ logger = logging.getLogger()
 
 class Victron:
     def __init__(self, config, device_config, output, cmd, thread_count, thread_q):
+        logger.debug(f"Start init...")
         self.config = config
         self.device_config = device_config
         self.given_output = output
@@ -25,7 +26,9 @@ class Victron:
 
         if self.device_config['protocol'] == 'serial':
             from lib.victron_serial.victron_serial import VictronSerial
+            logger.debug(f"Starting VictronSerial...")
             self.victron_type = VictronSerial(device_config, self.output)
+            logger.debug(f"Started VictronSerial")
         elif self.device_config['protocol'] == 'bluetooth-ble':
             from lib.victron_ble.victron_ble import VictronBle
             self.victron_type = VictronBle(device_config, self.output)
